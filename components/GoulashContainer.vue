@@ -1,14 +1,17 @@
 <template>
-  <div>test</div>
+  <v-container fluid>
+    <v-row justify="center">
+      <actor v-for="i in 5" class="ma-3"/>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import {Component, Vue} from 'nuxt-property-decorator'
+
+@Component
 export default class GoulashContainer extends Vue {
 }
 
 </script>
 
-<style scoped>
-
-</style>
