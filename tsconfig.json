@@ -10,11 +10,13 @@
     ],
     "esModuleInterop": true,
     "allowJs": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
     "noEmit": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
+    "strictNullChecks": false,
     "paths": {
       "~/*": [
         "./*"
@@ -25,9 +27,14 @@
     },
     "types": [
       "@nuxt/types",
-      "@types/node"
+      "@types/node",
+      "@nuxtjs/axios",
+      "@nuxtjs/auth-next"
     ]
   },
+  "include": [
+    "./types"
+  ],
   "exclude": [
     "node_modules",
     ".nuxt",
