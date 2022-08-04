@@ -5,6 +5,9 @@
         <v-row justify="center">
           <v-card-title>Simulation Controls</v-card-title>
         </v-row>
+        <v-row justify="center">
+          <v-card-subtitle>Status: {{ simulationStatus }}</v-card-subtitle>
+        </v-row>
         <v-row justify="space-around">
           <v-btn @click="startSimulation">Start</v-btn>
           <v-btn @click="pauseSimulation">Pause</v-btn>
@@ -24,11 +27,13 @@
   </v-row>
 </template>
 
-<script>
+<script lang="ts">
 import {Component, Vue} from "nuxt-property-decorator";
 
 @Component
 export default class Index extends Vue {
+  simulationStatus: string = 'unknown'
+
   startSimulation() {
     this.$axios.post("http://localhost:8080/simulation/start");
   }
@@ -39,6 +44,14 @@ export default class Index extends Vue {
 
   stopSimulation() {
     this.$axios.post("http://localhost:8080/simulation/stop");
+  }
+
+  mounted() {
+    setInterval(() => {
+      this.$axios.get("http://localhost:8080/simulation/status").then(response => {
+        this.simulationStatus = response.data;
+      });
+    }, 1000);
   }
 }
 </script>
