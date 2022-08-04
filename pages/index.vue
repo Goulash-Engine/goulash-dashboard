@@ -1,60 +1,55 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <v-row>
       <v-col cols="4">
-        <v-row>
+        <v-card color="px-2 pb-5">
           <v-col>
-            <v-card>
-              <v-row class="pl-5">
-                <v-icon large>
-                  mdi-information
-                </v-icon>
-                <v-card-title>Simulation Info</v-card-title>
-              </v-row>
-              <v-row>
-                <v-card color="ma-5 grey darken-3">
-                  <v-card-text>
-                    <div class="text-h6">
-                      Status: {{ simulationStatus }}
-                    </div>
-                    <div class="text-caption">
-                      Date: {{ dateFormatted() }}
-                    </div>
-                    <div class="text-caption">
-                      Time: {{ timeFormatted() }}
-                    </div>
-                  </v-card-text>
-                </v-card>
-              </v-row>
-            </v-card>
+            <v-row>
+              <v-icon large>
+                mdi-information
+              </v-icon>
+              <v-card-title>Simulation Info</v-card-title>
+            </v-row>
+            <v-row>
+              <v-card color="grey darken-3">
+                <v-card-text>
+                  <div class="text-h6">
+                    Status: {{ simulationStatus }}
+                  </div>
+                  <div class="text-caption">
+                    Date: {{ dateFormatted() }}
+                  </div>
+                  <div class="text-caption">
+                    Time: {{ timeFormatted() }}
+                  </div>
+                </v-card-text>
+              </v-card>
+            </v-row>
           </v-col>
-        </v-row>
-        <div class="py-4" />
-        <v-row>
+        </v-card>
+        <div class="py-2" />
+        <v-card color="px-2 pb-5">
           <v-col>
-            <v-card>
-              <v-row>
-                <v-col cols="8">
-                  <v-row class="pl-5">
-                    <v-icon large>
-                      mdi-application-cog-outline
-                    </v-icon>
-                    <v-card-title>Simulation Controls</v-card-title>
-                  </v-row>
-                </v-col>
-                <v-col align-self="center" cols="4">
-                  <v-btn :color="simulationStatus == 'running' ? 'orange' : 'green' " @click="startSimulation">
-                    {{ buttonLabel() }}
-                  </v-btn>
-                  <div class="py-1" />
-                  <v-btn :disabled="simulationStatus == 'not running'" color="red" @click="stopSimulation">
-                    Stop
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-card>
+            <v-row>
+              <v-icon large>
+                mdi-application-cog-outline
+              </v-icon>
+              <v-card-title>Simulation Controls</v-card-title>
+            </v-row>
+            <v-row>
+              <v-col style="text-align: center" cols="6">
+                <v-btn :color="simulationStatus == 'running' ? 'orange' : 'green' " @click="startSimulation">
+                  {{ buttonLabel() }}
+                </v-btn>
+              </v-col>
+              <v-col style="text-align: center" cols="6">
+                <v-btn :disabled="simulationStatus == 'not running'" color="red" @click="stopSimulation">
+                  Stop
+                </v-btn>
+              </v-col>
+            </v-row>
           </v-col>
-        </v-row>
+        </v-card>
       </v-col>
       <v-col cols="8">
         <v-card>
