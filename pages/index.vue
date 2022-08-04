@@ -5,7 +5,7 @@
         <v-row>
           <v-col>
             <v-card>
-              <v-row>
+              <v-row class="pl-5">
                 <v-icon large>
                   mdi-information
                 </v-icon>
@@ -35,7 +35,7 @@
             <v-card>
               <v-row>
                 <v-col cols="8">
-                  <v-row>
+                  <v-row class="pl-5">
                     <v-icon large>
                       mdi-application-cog-outline
                     </v-icon>
