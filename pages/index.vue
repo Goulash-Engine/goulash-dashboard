@@ -9,13 +9,10 @@
           <v-card-subtitle>Status: {{ simulationStatus }}</v-card-subtitle>
         </v-row>
         <v-row justify="space-around">
-          <v-btn @click="startSimulation">
-            Start
+          <v-btn :color="simulationStatus == 'running' ? 'orange' : 'green' " @click="startSimulation">
+            {{ buttonLabel() }}
           </v-btn>
-          <v-btn @click="pauseSimulation">
-            Pause
-          </v-btn>
-          <v-btn @click="stopSimulation">
+          <v-btn color="red" @click="stopSimulation">
             Stop
           </v-btn>
         </v-row>
@@ -40,12 +37,30 @@ import { Component, Vue } from 'nuxt-property-decorator'
 export default class Index extends Vue {
   simulationStatus: string = 'unknown'
 
-  startSimulation () {
-    this.$axios.post('http://localhost:8080/simulation/start')
+  buttonLabel () {
+    if (this.simulationStatus === 'running') {
+      return 'Pause'
+    }
+    if (this.simulationStatus === 'not running' || this.simulationStatus === 'unknown') {
+      return 'Start'
+    }
+    if (this.simulationStatus === 'paused') {
+      return 'Resume'
+    }
   }
 
-  pauseSimulation () {
-    this.$axios.post('http://localhost:8080/simulation/pause')
+  startSimulation () {
+    if (this.simulationStatus === 'running') {
+      this.$axios.post('http://localhost:8080/simulation/pause')
+    }
+
+    if (this.simulationStatus === 'paused') {
+      this.$axios.post('http://localhost:8080/simulation/pause')
+    }
+
+    if (this.simulationStatus === 'not running' || this.simulationStatus === 'unknown') {
+      this.$axios.post('http://localhost:8080/simulation/start')
+    }
   }
 
   stopSimulation () {
