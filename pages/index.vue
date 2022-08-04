@@ -7,10 +7,12 @@
             <v-card>
               <v-row>
                 <v-col cols="8">
-                  <v-icon large>
-                    mdi-information
-                  </v-icon>
-                  <v-card-title>Simulation Info</v-card-title>
+                  <v-row>
+                    <v-icon large>
+                      mdi-information
+                    </v-icon>
+                    <v-card-title>Simulation Info</v-card-title>
+                  </v-row>
                 </v-col>
                 <v-col cols="4">
                   <v-card-text>Status: {{ simulationStatus }}</v-card-text>
@@ -35,7 +37,7 @@
                     {{ buttonLabel() }}
                   </v-btn>
                   <div class="py-1"></div>
-                  <v-btn color="red" @click="stopSimulation">
+                  <v-btn :disabled="simulationStatus == 'not running'" color="red" @click="stopSimulation">
                     Stop
                   </v-btn>
                 </v-col>
