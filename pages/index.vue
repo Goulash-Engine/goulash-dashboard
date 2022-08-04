@@ -6,29 +6,39 @@
           <v-col>
             <v-card>
               <v-row>
-                <v-col cols="8">
-                  <v-row>
-                    <v-icon large>
-                      mdi-information
-                    </v-icon>
-                    <v-card-title>Simulation Info</v-card-title>
-                  </v-row>
-                </v-col>
-                <v-col cols="4">
-                  <v-card-text>Status: {{ simulationStatus }}</v-card-text>
-                </v-col>
+                <v-icon large>
+                  mdi-information
+                </v-icon>
+                <v-card-title>Simulation Info</v-card-title>
+              </v-row>
+              <v-row>
+                <v-card color="ma-5 grey darken-3">
+                  <v-card-text>
+                    <div class="text-h6">
+                      Status: {{ simulationStatus }}
+                    </div>
+                    <div class="text-caption">
+                      Date: {{ dateFormatted() }}
+                    </div>
+                    <div class="text-caption">
+                      Time: {{ timeFormatted() }}
+                    </div>
+                  </v-card-text>
+                </v-card>
               </v-row>
             </v-card>
           </v-col>
         </v-row>
-        <div class="py-4"></div>
+        <div class="py-4" />
         <v-row>
           <v-col>
             <v-card>
               <v-row>
                 <v-col cols="8">
                   <v-row>
-                    <v-icon large>mdi-application-cog-outline</v-icon>
+                    <v-icon large>
+                      mdi-application-cog-outline
+                    </v-icon>
                     <v-card-title>Simulation Controls</v-card-title>
                   </v-row>
                 </v-col>
@@ -36,7 +46,7 @@
                   <v-btn :color="simulationStatus == 'running' ? 'orange' : 'green' " @click="startSimulation">
                     {{ buttonLabel() }}
                   </v-btn>
-                  <div class="py-1"></div>
+                  <div class="py-1" />
                   <v-btn :disabled="simulationStatus == 'not running'" color="red" @click="stopSimulation">
                     Stop
                   </v-btn>
@@ -49,7 +59,7 @@
       <v-col cols="8">
         <v-card>
           <v-card-title>Goulash-Dashboard</v-card-title>
-          <goulash-container/>
+          <goulash-container />
         </v-card>
       </v-col>
     </v-row>
@@ -57,13 +67,15 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
+import { WorldDate } from '../types/worlddate'
 
 @Component
-export default class Index extends Vue {
+export default class Dashboard extends Vue {
   simulationStatus: string = 'unknown'
+  worldDate?: WorldDate = null
 
-  buttonLabel() {
+  buttonLabel () {
     if (this.simulationStatus === 'running') {
       return 'Pause'
     }
@@ -75,7 +87,7 @@ export default class Index extends Vue {
     }
   }
 
-  startSimulation() {
+  startSimulation () {
     if (this.simulationStatus === 'running') {
       this.$axios.post('http://localhost:8080/simulation/pause')
     }
@@ -89,20 +101,27 @@ export default class Index extends Vue {
     }
   }
 
-  stopSimulation() {
+  stopSimulation () {
     this.$axios.post('http://localhost:8080/simulation/stop')
   }
 
-  mounted() {
+  mounted () {
     setInterval(() => {
       this.fetchStatus()
     }, 1000)
   }
 
-  fetchStatus() {
-    this.$axios.get('http://localhost:8080/simulation/status').then((response) => {
-      this.simulationStatus = response.data
-    })
+  dateFormatted (): string {
+    return `${this.worldDate?.day} days ${this.worldDate?.month} months ${this.worldDate?.year} years`
+  }
+
+  timeFormatted (): string {
+    return `${this.worldDate?.time.hours}h ${this.worldDate?.time.minutes}m ${this.worldDate?.time.seconds}s`
+  }
+
+  async fetchStatus () {
+    this.simulationStatus = await this.$axios.$get('http://localhost:8080/simulation/status')
+    this.worldDate = await this.$axios.$get('http://localhost:8080/simulation/time')
   }
 }
 </script>
