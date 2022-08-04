@@ -14,11 +14,11 @@
 </template>
 <script lang="ts">
 import {Component, Prop, Vue} from "nuxt-property-decorator";
-import {Actor} from "../types/actor";
+import {ActorState} from "../types/actor_state";
 
 @Component
 export default class ActorDetail extends Vue {
-  @Prop({type: Actor, required: true})
-  actor: Actor;
+  @Prop({type: ActorState, required: true})
+  actor: ActorState;
 }
 </script>
