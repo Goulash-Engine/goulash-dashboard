@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
-      <actor v-for="i in 5" class="ma-3"/>
+      <actor-detail v-for="i in 5" class="ma-3"/>
     </v-row>
   </v-container>
 </template>

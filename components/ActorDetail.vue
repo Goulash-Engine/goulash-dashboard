@@ -14,6 +14,6 @@
 import {Component, Vue} from "nuxt-property-decorator";
 
 @Component
-export default class Actor extends Vue {
+export default class ActorDetail extends Vue {
 }
 </script>
