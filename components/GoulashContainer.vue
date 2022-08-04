@@ -1,6 +1,10 @@
 <template>
   <div>
-    <actor-detail v-for="actor in actors" :key="actor.id" :actor="actor" class="ma-3" />
+    <v-row>
+      <v-col cols="6">
+        <actor-detail v-for="actor in actors" :key="actor.id" :actor="actor" class="ma-3 pa-3" />
+      </v-col>
+    </v-row>
   </div>
 </template>
 

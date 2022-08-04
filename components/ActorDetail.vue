@@ -1,20 +1,58 @@
 <template>
-  <v-card color="purple">
+  <v-card color="blue lighten-2" light>
     <v-card-title>Actor</v-card-title>
     <v-card-subtitle>{{ actor.id }}</v-card-subtitle>
-    <v-card-text>
-      <v-list class="pa-2" dense>
-        <v-list-item-title>Urges:</v-list-item-title>
-        <v-list-item v-for="(value, urge) in actor.urges.urges">{{ urge }}: {{ value }}</v-list-item>
-        <v-list-item>Health: {{ actor.state.health }}</v-list-item>
-        <v-list-item>Nourishment: {{ actor.state.nourishment }}</v-list-item>
-      </v-list>
-    </v-card-text>
+    <v-row class="px-3 pb-2">
+      <v-col>
+        <v-simple-table class="blue darken-2" dark dense>
+          <template #default>
+            <thead>
+            <tr>
+              <th class="text-left">
+                Urge
+              </th>
+              <th class="text-left">
+                Value
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(value, urge) in actor.urges" :key="urge.toString() + actor.id">
+              <td>{{ urge }}</td>
+              <td>{{ value.toFixed(2) }}</td>
+            </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </v-col>
+      <v-col>
+        <v-simple-table class='blue darken-1' dark dense>
+          <template #default>
+            <thead>
+            <tr>
+              <th class="text-left">
+                State
+              </th>
+              <th class="text-left">
+                Value
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(value, state) in actor.state" :key="state.toString() + actor.id">
+              <td>{{ state }}</td>
+              <td>{{ value.toFixed(2) }}</td>
+            </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 <script lang="ts">
-import {Component, Prop, Vue} from "nuxt-property-decorator";
-import {ActorState} from "../types/actor_state";
+import {Component, Prop, Vue} from 'nuxt-property-decorator'
+import {ActorState} from '../types/actor_state'
 
 @Component
 export default class ActorDetail extends Vue {
