@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <v-row>
-      <v-col cols="6">
-        <actor-detail v-for="actor in actors" :key="actor.id" :actor="actor" class="ma-3 pa-3" />
-      </v-col>
-    </v-row>
-  </div>
+  <v-row class="mt-2">
+    <v-col v-for="actor in actors" :key="actor.id" cols="3">
+      <actor-detail :actor="actor" class="pb-2 mx-2" />
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">

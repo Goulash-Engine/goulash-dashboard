@@ -1,11 +1,15 @@
 <template>
-  <v-card color="blue lighten-2" light>
+  <v-card color="blue darken-2" light>
     <v-row class="pl-3">
-      <v-card-title>Name: {{ actor.name }}</v-card-title>
+      <v-card-title>
+        <div class="text-body-2">
+          Name: <span class="font-weight-bold">{{ actor.name }}</span>
+        </div>
+      </v-card-title>
     </v-row>
     <v-row class="px-3 pb-2">
       <v-col>
-        <v-simple-table class="blue darken-2" dark dense>
+        <v-simple-table class="blue" light dense>
           <template #default>
             <thead>
               <tr>
@@ -27,7 +31,7 @@
         </v-simple-table>
       </v-col>
       <v-col>
-        <v-simple-table class="blue darken-1" dark dense>
+        <v-simple-table class="blue" light dense>
           <template #default>
             <thead>
               <tr>

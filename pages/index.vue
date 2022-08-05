@@ -1,8 +1,8 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row>
       <v-col cols="4">
-        <v-card color="px-2 pb-5">
+        <v-card color="grey darken-3" class="px-2 pb-5">
           <v-col>
             <v-row>
               <v-icon large>
@@ -11,7 +11,7 @@
               <v-card-title>Simulation Info</v-card-title>
             </v-row>
             <v-row>
-              <v-card color="grey darken-3">
+              <v-card color="grey darken-2">
                 <v-card-text>
                   <div class="text-h6">
                     Status: {{ simulationStatus }}
@@ -28,7 +28,7 @@
           </v-col>
         </v-card>
         <div class="py-2" />
-        <v-card color="px-2 pb-5">
+        <v-card color="grey darken-3" class="px-2 pb-5">
           <v-col>
             <v-row>
               <v-icon large>
@@ -52,8 +52,9 @@
         </v-card>
       </v-col>
       <v-col cols="8">
-        <v-card>
-          <v-card-title>Goulash-Dashboard</v-card-title>
+        <v-card color="grey darken-3">
+          <v-card-title>Container: Root</v-card-title>
+          <v-divider class="black" />
           <goulash-container />
         </v-card>
       </v-col>
