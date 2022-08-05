@@ -10,7 +10,45 @@
         </v-btn>
       </v-row>
       <v-row justify="center">
-        <v-simple-table class="blue lighten-2 elevation-3" light dense>
+        <v-simple-table class="blue" light dense>
+          <template #default>
+            <thead>
+              <tr>
+                <th class="text-left">
+                  State
+                </th>
+                <th class="text-right">
+                  Value
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(value, state) in actor.state" :key="state.toString() + actor.id">
+                <td>{{ state }}</td>
+                <td class="text-right">
+                  {{ value.toFixed(2) }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </v-row>
+      <v-row>
+        <v-col style="text-align: center">
+          <v-btn
+            v-for="condition in actor.conditions"
+            :key="actor.id + condition"
+            style="pointer-events: none"
+            class="ma-1"
+            x-small
+            color="purple lighten-2"
+          >
+            {{ condition }}
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row class="pt-2" justify="center">
+        <v-simple-table class="blue lighten-2" light dense>
           <template #default>
             <thead>
               <tr>
@@ -27,30 +65,6 @@
                 <td>
                   {{ urge }}
                 </td>
-                <td class="text-right">
-                  {{ value.toFixed(2) }}
-                </td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
-      </v-row>
-      <v-row class="pt-2" justify="center">
-        <v-simple-table class="blue" light dense>
-          <template #default>
-            <thead>
-              <tr>
-                <th class="text-left">
-                  State
-                </th>
-                <th class="text-right">
-                  Value
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(value, state) in actor.state" :key="state.toString() + actor.id">
-                <td>{{ state }}</td>
                 <td class="text-right">
                   {{ value.toFixed(2) }}
                 </td>

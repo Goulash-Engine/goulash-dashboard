@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="4">
+      <v-col cols="3">
         <v-card color="grey darken-3" class="px-2 pb-5">
           <v-col>
             <info-panel :simulation-status="simulationStatus" />
@@ -14,7 +14,7 @@
           </v-col>
         </v-card>
       </v-col>
-      <v-col cols="8">
+      <v-col cols="9">
         <v-card color="grey darken-3">
           <v-card-title>Container: Root</v-card-title>
           <v-divider class="black" />
