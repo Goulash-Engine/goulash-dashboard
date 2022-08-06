@@ -1,4 +1,4 @@
-# prosper-dashboard
+# goulash-dashboard
 
 ## Build Setup
 
