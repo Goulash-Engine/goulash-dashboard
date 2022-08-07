@@ -3,7 +3,7 @@
     <v-container>
       <v-row class="py-3" align="center" justify="space-around">
         <div class="text-body-2">
-          Name: <span class="font-weight-bold">{{ actor.name }}</span>
+          Key: <span class="font-weight-bold">{{ actor.key }}</span>
         </div>
         <v-btn style="pointer-events: none " depressed color="green lighten-2" x-small>
           {{ actor.activity }}
