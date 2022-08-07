@@ -9,6 +9,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { ActorState } from '../types/actor_state'
+import SimulationStatus from '../types/simulationstatus'
 
 @Component
 export default class GoulashContainer extends Vue {
@@ -21,8 +22,8 @@ export default class GoulashContainer extends Vue {
   }
 
   async fetchActors () {
-    const status = await this.$axios.$get('http://localhost:8080/simulation/status')
-    if (status !== 'running') {
+    const simuationStatus: SimulationStatus = await this.$axios.$get('http://localhost:8080/simulation/status')
+    if (simuationStatus.status !== 'running') {
       return
     }
     this.$axios.get('http://localhost:8080/actors?container=root').then((response) => {

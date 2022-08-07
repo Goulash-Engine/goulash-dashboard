@@ -27,10 +27,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import SimulationStatus from '../types/simulationstatus'
 
 @Component
 export default class Dashboard extends Vue {
-  simulationStatus: string = 'unknown'
+  simulationStatus: SimulationStatus = new SimulationStatus('unknown', 0)
 
   mounted () {
     setInterval(() => {

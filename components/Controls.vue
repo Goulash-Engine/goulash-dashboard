@@ -8,12 +8,12 @@
     </v-row>
     <v-row>
       <v-col style="text-align: center" cols="6">
-        <v-btn :color="simulationStatus == 'running' ? 'orange' : 'green' " @click="startSimulation">
+        <v-btn :color="simulationStatus.status == 'running' ? 'orange' : 'green' " @click="startSimulation">
           {{ buttonLabel() }}
         </v-btn>
       </v-col>
       <v-col style="text-align: center" cols="6">
-        <v-btn :disabled="simulationStatus == 'not running'" color="red" @click="stopSimulation">
+        <v-btn :disabled="simulationStatus.status == 'not running'" color="red" @click="stopSimulation">
           Stop
         </v-btn>
       </v-col>
@@ -22,34 +22,35 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import SimulationStatus from '../types/simulationstatus'
 
 @Component
 export default class Controls extends Vue {
-  @Prop({ type: String, required: true })
-  simulationStatus: string = 'unknown'
+  @Prop({ type: Object as () => SimulationStatus, required: true })
+  simulationStatus: SimulationStatus
 
   buttonLabel () {
-    if (this.simulationStatus === 'running') {
+    if (this.simulationStatus.status === 'running') {
       return 'Pause'
     }
-    if (this.simulationStatus === 'not running' || this.simulationStatus === 'unknown') {
+    if (this.simulationStatus.status === 'not running' || this.simulationStatus.status === 'unknown') {
       return 'Start'
     }
-    if (this.simulationStatus === 'paused') {
+    if (this.simulationStatus.status === 'paused') {
       return 'Resume'
     }
   }
 
   startSimulation () {
-    if (this.simulationStatus === 'running') {
+    if (this.simulationStatus.status === 'running') {
       this.$axios.post('http://localhost:8080/simulation/pause')
     }
 
-    if (this.simulationStatus === 'paused') {
+    if (this.simulationStatus.status === 'paused') {
       this.$axios.post('http://localhost:8080/simulation/pause')
     }
 
-    if (this.simulationStatus === 'not running' || this.simulationStatus === 'unknown') {
+    if (this.simulationStatus.status === 'not running' || this.simulationStatus.status === 'unknown') {
       this.$axios.post('http://localhost:8080/simulation/start')
     }
   }

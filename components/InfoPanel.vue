@@ -10,13 +10,16 @@
       <v-card color="grey darken-2">
         <v-card-text>
           <div class="text-h6">
-            Status: {{ simulationStatus }}
+            Status: {{ simulationStatus.status }}
           </div>
           <div class="text-caption">
             Date: {{ dateFormatted() }}
           </div>
           <div class="text-caption">
             Time: {{ timeFormatted() }}
+          </div>
+          <div class="text-caption">
+            Ticks: {{ simulationStatus.ticks }}
           </div>
         </v-card-text>
       </v-card>
@@ -26,11 +29,12 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { WorldDate } from '../types/worlddate'
+import SimulationStatus from '../types/simulationstatus'
 
 @Component
 export default class InfoPanel extends Vue {
-  @Prop({ type: String, required: true })
-  simulationStatus: string = 'unknown'
+  @Prop({ type: Object as () => SimulationStatus, required: true })
+  simulationStatus: SimulationStatus
 
   worldDate?: WorldDate = null
 

@@ -82,7 +82,7 @@ import { ActorState } from '../types/actor_state'
 
 @Component
 export default class ActorDetail extends Vue {
-  @Prop({ type: ActorState, required: true })
+  @Prop({ type: Object as () => ActorState, required: true })
   actor: ActorState;
 }
 </script>
