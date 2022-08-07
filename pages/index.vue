@@ -13,6 +13,12 @@
             <controls :simulation-status="simulationStatus" />
           </v-col>
         </v-card>
+        <div class="py-2" />
+        <v-card color="grey darken-3" class="px-2">
+          <v-col>
+            <add-actor :simulation-status="simulationStatus" />
+          </v-col>
+        </v-card>
       </v-col>
       <v-col cols="9">
         <v-card color="grey darken-3">
