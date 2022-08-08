@@ -1,6 +1,6 @@
 <template>
   <v-row class="mt-2">
-    <v-col v-for="actor in actors" :key="actor.id" cols="3">
+    <v-col v-for="actor in actors" :key="actor.id" cols="12" sm="5" md="4" lg="3">
       <actor-detail :actor="actor" class="pb-2 mx-2" />
     </v-col>
   </v-row>
