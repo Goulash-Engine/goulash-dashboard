@@ -46,7 +46,7 @@ export default class Dashboard extends Vue {
   }
 
   async fetchStatus () {
-    this.simulationStatus = await this.$axios.$get('http://localhost:8080/simulation/status')
+    this.simulationStatus = await this.$axios.$get('http://localhost:8080/simulation/standalone/status')
   }
 }
 </script>

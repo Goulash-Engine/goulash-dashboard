@@ -43,20 +43,20 @@ export default class Controls extends Vue {
 
   startSimulation () {
     if (this.simulationStatus.status === 'running') {
-      this.$axios.post('http://localhost:8080/simulation/pause')
+      this.$axios.post('http://localhost:8080/simulation/standalone/pause')
     }
 
     if (this.simulationStatus.status === 'paused') {
-      this.$axios.post('http://localhost:8080/simulation/pause')
+      this.$axios.post('http://localhost:8080/simulation/standalone/pause')
     }
 
     if (this.simulationStatus.status === 'not running' || this.simulationStatus.status === 'unknown') {
-      this.$axios.post('http://localhost:8080/simulation/start')
+      this.$axios.post('http://localhost:8080/simulation/standalone/start')
     }
   }
 
   stopSimulation () {
-    this.$axios.post('http://localhost:8080/simulation/stop')
+    this.$axios.post('http://localhost:8080/simulation/standalone/stop')
   }
 }
 </script>

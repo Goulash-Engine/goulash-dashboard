@@ -53,7 +53,7 @@ export default class InfoPanel extends Vue {
   }
 
   async fetchTime () {
-    this.worldDate = await this.$axios.$get('http://localhost:8080/simulation/time')
+    this.worldDate = await this.$axios.$get('http://localhost:8080/simulation/standalone/time')
   }
 }
 </script>
