@@ -22,8 +22,8 @@ export default class GoulashContainer extends Vue {
   }
 
   async fetchActors () {
-    const simuationStatus: SimulationStatus = await this.$axios.$get('http://localhost:8080/simulation/standalone/status')
-    if (simuationStatus.status !== 'running') {
+    const simuationStatus: SimulationStatus = await this.$axios.$get('http://localhost:8080/simulation/status')
+    if (simuationStatus.status === 'not running') {
       return
     }
     this.$axios.get('http://localhost:8080/actors?container=root').then((response) => {

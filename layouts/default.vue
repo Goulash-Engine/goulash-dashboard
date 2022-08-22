@@ -1,16 +1,16 @@
 <template>
   <v-app dark>
     <v-main>
-      <Nuxt/>
+      <Nuxt />
     </v-main>
     <v-footer absolute app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; Goulash Dashboard {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
 export default {
-  name: 'DefaultLayout',
+  name: 'DefaultLayout'
 }
 </script>

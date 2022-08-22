@@ -12,12 +12,12 @@
           <div class="text-h6">
             Status: {{ simulationStatus.status }}
           </div>
-          <div class="text-caption">
-            Date: {{ dateFormatted() }}
-          </div>
-          <div class="text-caption">
-            Time: {{ timeFormatted() }}
-          </div>
+<!--          <div class="text-caption">-->
+<!--            Date: {{ dateFormatted() }}-->
+<!--          </div>-->
+<!--          <div class="text-caption">-->
+<!--            Time: {{ timeFormatted() }}-->
+<!--          </div>-->
           <div class="text-caption">
             Ticks: {{ simulationStatus.ticks }}
           </div>
@@ -48,12 +48,12 @@ export default class InfoPanel extends Vue {
 
   mounted () {
     setInterval(() => {
-      this.fetchTime()
+      // this.fetchTime()
     }, 1000)
   }
 
-  async fetchTime () {
-    this.worldDate = await this.$axios.$get('http://localhost:8080/simulation/standalone/time')
-  }
+  // async fetchTime () {
+  //   this.worldDate = await this.$axios.$get('http://localhost:8080/simulation/standalone/time')
+  // }
 }
 </script>
